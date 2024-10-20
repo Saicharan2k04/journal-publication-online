@@ -1,0 +1,29 @@
+<div class="journals-table">
+    <table class="table" *ngIf="length > 0">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Title</th>
+                <th>Authors</th>
+                <th>Abstract</th>
+                <th>Publication Date</th>
+                <th>Updated Date</th>
+                <th>Created By</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let journal of journals; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td><a [routerLink]="['/journals', journal._id]" (click)="logAndNavigate(journal._id)">{{ journal.title }}</a></td>
+                <td>{{ journal.authors }}</td>
+                <td>{{ journal.abstract }}</td>
+                <td>{{ journal.createdAt | dateFormat }}</td> <!-- Formatting the date -->
+                <td>{{ journal.updatedAt | dateFormat }}</td> <!-- Formatting the date -->
+                <td>{{ journal.username }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="length <= 0">
+        <h2>No Journals Found</h2>
+    </div>
+</div>
